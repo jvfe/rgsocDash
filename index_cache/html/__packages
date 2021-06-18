@@ -1,0 +1,8 @@
+base
+flexdashboard
+stringr
+dplyr
+lubridate
+echarts4r
+rugsDash
+DT

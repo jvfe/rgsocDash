@@ -1,0 +1,115 @@
+---
+title: "R-Google Summer of Code | Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+    self_contained: false
+    includes:
+      after_body: "afterInit.html"
+    css: css/custom.css
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(stringr)
+library(dplyr)
+library(lubridate)
+library(echarts4r)
+library(DT)
+devtools::load_all()
+```
+
+```{r read_data, include=FALSE}
+gsoc_full <- read_gsoc()
+gsoc_summary <- read_summary()
+
+mycolor <- c("#2780e3","#003636","#a9a9a9", "#91c8c8")
+```
+
+Sidebar {.sidebar data-width=200}
+=====================================
+
+<div class="sidebar-pages">
+<a class="navlink" href="#home" data-toggle="tab" aria-expanded="false"><i class="fa fa-home"></i> Home</a>
+</div>
+
+Home
+=====================================
+
+Row
+-------------------------------------
+
+### Projects
+
+```{r}
+valueBox(gsoc_summary$summary$total_projects, icon = "fa-tasks", color = "#435f9c")
+```
+
+### Students
+
+```{r}
+valueBox(gsoc_summary$summary$total_students, icon = "fa-user", color = "#0586c4")
+```
+
+### Mentors
+
+```{r}
+valueBox(gsoc_summary$summary$total_mentors, icon = "fa-user", color = "#435f9c")
+```
+
+### Years
+
+```{r}
+valueBox(gsoc_full %>% pull(Year) %>% unique() %>% length(), icon = "fa-calendar", color = "#0586c4")
+```
+
+Row
+-----------------------------------------------------------------------
+
+### Students Returned as Mentors
+
+```{r}
+valueBox(gsoc_summary$summary$student_mentors, icon = "fa-user-plus", color = "#435f9c")
+```
+
+### Students Returned for Another GSoC
+
+```{r}
+valueBox(gsoc_summary$summary$numberOfReturningStudents, icon = "fa-user-plus", color = "#0586c4")
+```
+
+### Projects Co-Mentored by Past Students
+
+```{r}
+valueBox(gsoc_summary$summary$numberOfMentoredProjectsByPastStudents, icon = "fa-tasks", color = "#435f9c")
+```
+
+Row
+-----------------------------------------------------------------------
+
+### Find a Project
+
+```{r}
+gsoc_full %>% 
+  datatable(
+    .,
+    class = 'cell-border stripe',
+    extensions = "Buttons",
+    rownames = FALSE,
+    escape = FALSE,
+    filter = 'top',
+    options = list(
+      scrollY = 600,
+      lengthMenu = c(20, 25, 50, 100),
+      pageLength = 20,
+      dom = '<"flex-control"lBf>tip',
+      buttons = list('copy', list(
+        extend = 'collection',
+        buttons = c('csv', 'excel'),
+        text = 'Download'
+      ))
+    )
+  )
+```
+
