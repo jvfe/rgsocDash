@@ -229,7 +229,7 @@ gsoc_summary$top5_student_mentors %>%
 ### Most Active Mentors
 
 ```{r}
-gsoc_summary$top15_active_mentors %>% 
+gsoc_summary$top15_active_mentors %>%
   datatable(
     .,
     class = 'cell-border stripe',
@@ -250,7 +250,8 @@ Row
 ### Find a Project
 
 ```{r}
-gsoc_full %>% 
+gsoc_full %>%
+  arrange(desc(Year)) %>% 
   datatable(
     .,
     class = 'cell-border stripe',
