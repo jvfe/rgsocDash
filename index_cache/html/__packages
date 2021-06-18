@@ -4,5 +4,6 @@ stringr
 dplyr
 lubridate
 echarts4r
-rugsDash
 DT
+rgsocDash
+tidytext

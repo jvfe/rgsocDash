@@ -182,7 +182,7 @@
 	min-width: 70px;
 }
 
-#locate-an-r-user-group {
+#find-a-project {
   width: 90% !important;
 }
 
@@ -193,6 +193,14 @@ table.dataTable {
 .flex-control {
   display: flex;
   justify-content: space-between;
+}
+
+.echarts4r .html-widget .html-widget-static-bound {
+  min-width: 90% !important;
+}
+
+canvas {
+  min-width: 90% !important;
 }
 
 @media screen and (min-width: 1400px) {
