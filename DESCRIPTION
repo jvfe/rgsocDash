@@ -23,4 +23,5 @@ Imports:
     jsonlite,
     stringr,
     tidyr,
-    tidytext
+    tidytext,
+    vroom
