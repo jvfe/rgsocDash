@@ -1,11 +1,11 @@
 read_gsoc <- function() {
-  gsoc_csv_url <- "https://raw.githubusercontent.com/benubah/r-community-explorer/master/docs/data/gsoc.csv"
+  gsoc_tsv <- "data/gsoc.tsv"
 
-  vroom::vroom(gsoc_csv_url)
+  vroom::vroom(gsoc_tsv)
 }
 
 read_summary <- function() {
-  gsoc_summary_url <- "https://raw.githubusercontent.com/benubah/r-community-explorer/master/docs/data/gsoc_summary.json"
+  gsoc_summary <- "data/gsoc_summary.json"
 
-  jsonlite::fromJSON(gsoc_summary_url)
+  jsonlite::fromJSON(gsoc_summary)
 }
