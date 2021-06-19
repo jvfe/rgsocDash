@@ -35,7 +35,7 @@ trim.strings <- function(x, side = "both") {
 }
 
 projects <-
-  read.csv("docs/data/gsoc.csv", sep = "\t", encoding = "utf-8")
+  read.csv("data/gsoc.tsv", sep = "\t", encoding = "utf-8")
 colnames(projects) <-
   c("Year", "Project", "WorkProduct", "Student", "Mentors")
 number_of_projects <- dim(projects)[[1]]
@@ -100,12 +100,3 @@ gsoc_json <-
   )
 
 writeLines(gsoc_json, "data/gsoc_summary.json")
-
-# write project titles to text document
-txt <- c()
-for (i in 1:number_of_projects) {
-  txt <- c(as.vector(projects$Project[i]), txt)
-}
-full_desc <- paste0(txt, collapse = " ")
-
-writeLines(full_desc, "data/rgsoc_project_titles.txt")
